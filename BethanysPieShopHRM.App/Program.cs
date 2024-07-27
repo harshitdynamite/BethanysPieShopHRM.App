@@ -12,5 +12,6 @@ builder.Services.AddHttpClient<IEmployeeDataService,EmployeeDataService>(client 
 
 //Registering the ApplicationState class to access the application state.
 //It is just like any other class
+//You could have added it as SingleTon but it would have the same effect
 builder.Services.AddScoped<ApplicationState>();
 await builder.Build().RunAsync();
