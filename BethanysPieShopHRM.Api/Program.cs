@@ -1,6 +1,7 @@
 using BethanysPieShopHRM.Api.Models;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -36,6 +37,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseWebAssemblyDebugging(); //middle ware to support BlazorWebAssembly debugging
+}
+app.UseBlazorFrameworkFiles(); //middleware to serve blazor application from the Api project
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();
@@ -47,5 +53,6 @@ app.UseAuthorization();
 app.UseCors("Open");
 
 app.MapControllers();
+app.MapFallbackToFile("index.html"); //if controller is not found then route thte incoming request to index.html
 
 app.Run();
