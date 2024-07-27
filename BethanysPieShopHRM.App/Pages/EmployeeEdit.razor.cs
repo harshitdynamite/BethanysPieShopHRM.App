@@ -11,17 +11,22 @@ namespace BethanysPieShopHRM.App.Pages
 
         [Inject]
         public ICountryDataService countryDataService { get; set; }
+        
+        [Inject]
+        public IJobCategoryDataService jobCategoryDataService { get; set; }
 
         [Parameter]
         public string? EmployeeId { get; set; }
 
         public Employee Employee { get; set; } = new Employee();
         public List<Country> Countries { get; set; } = new List<Country>();
+        public List<JobCategory> JobCategories { get; set; }=new List<JobCategory>();
 
         protected async override Task OnInitializedAsync()
         {
             Employee = await employeeDataService.GetEmployeeDetails(int.Parse(EmployeeId));
             Countries = (await countryDataService.GetAllCountries()).ToList();
+            JobCategories = (await jobCategoryDataService.GetAllJobCategories()).ToList();
         }
 
     }

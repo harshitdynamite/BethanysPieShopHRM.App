@@ -1,5 +1,6 @@
 ﻿@page "/employeeedit"
 @page "/employeeedit/{EmployeeId}"
+@using BethanysPieShopHRM.Shared.Domain
 
 <section class="employee-edit">
     <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
@@ -54,7 +55,7 @@
         </div>
 
         <div class="row mb-3">
-            <label for="city" class="col-form-label col-md-3">Country: </label>
+            <label for="country" class="col-form-label col-md-3">Country: </label>
             <div class="col-md-8">
                 <InputSelect id="country" class="form-select col-md-8" @bind-Value="@Employee.CountryId">
                     @foreach (var country in Countries)
@@ -100,9 +101,44 @@
             </div>
         </div>
 
-        
+        <div class="row mb-3">
+            <label for="jobcategory" class="col-form-label col-md-3">Job category: </label>
+            <div class="col-md-8">
+                <InputSelect id="jobcategory" class="form-select col-md-8" @bind-Value="@Employee.JobCategoryId">
+                    @foreach (var jobCategory in JobCategories)
+                    {
+                        <option value="@jobCategory.JobCategoryId">@jobCategory.JobCategoryName</option>
+                    }
+                </InputSelect>
+            </div>
+        </div>
 
-       
+        <div class="row mb-3">
+            <InputRadioGroup Name="genderRadioGroup" @bind-Value="@Employee.Gender">
+                <label class="col-form-label col-md-3">Gender: </label>
+                <div class="col-md-8">
+                    @foreach (var gender in (Gender[])Enum.GetValues(typeof(Gender)))
+                    {
+                        <InputRadio Name="genderRadioGroup" Value="gender" class="form-check-input" />
+                        <label class="form-check-label">
+                            @gender
+                        </label>
+                        <br />
+                    }
+                </div>
+            </InputRadioGroup>
+        </div>
+        
+        <div class="row mb-3">
+            <label for="maritalstatus" class="col-form-label col-md-3">Marital status: </label>
+            <div class="col-md-8">
+                <InputSelect id="maritalstatus" class="form-select col-md-8" @bind-Value=@Employee.MaritalStatus>
+                    <option value="@(MaritalStatus.Single)">Single</option>
+                    <option value="@(MaritalStatus.Married)">Married</option>
+                    <option value="@(MaritalStatus.Other)">Other</option>
+                </InputSelect>
+            </div>
+        </div>
 
         <div class="row mb-3">
             <label for="joineddate" class="col-form-label col-md-3">Joined on: </label>
