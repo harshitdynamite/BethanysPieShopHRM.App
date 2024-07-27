@@ -1,5 +1,6 @@
 using BethanysPieShopHRM.App;
 using BethanysPieShopHRM.App.Services;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 
@@ -14,4 +15,5 @@ builder.Services.AddHttpClient<IEmployeeDataService,EmployeeDataService>(client 
 //It is just like any other class
 //You could have added it as SingleTon but it would have the same effect
 builder.Services.AddScoped<ApplicationState>();
+builder.Services.AddBlazoredLocalStorage();
 await builder.Build().RunAsync();
