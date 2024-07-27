@@ -10,4 +10,7 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddHttpClient<IEmployeeDataService,EmployeeDataService>(client => client.BaseAddress = new Uri(builder.HostEnvironment.BaseAddress));
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+//Registering the ApplicationState class to access the application state.
+//It is just like any other class
+builder.Services.AddScoped<ApplicationState>();
 await builder.Build().RunAsync();
