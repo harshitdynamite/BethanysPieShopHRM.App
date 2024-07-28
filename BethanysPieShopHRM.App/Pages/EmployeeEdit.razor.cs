@@ -1,6 +1,7 @@
 ﻿using BethanysPieShopHRM.App.Services;
 using BethanysPieShopHRM.Shared.Domain;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace BethanysPieShopHRM.App.Pages
 {
@@ -73,7 +74,12 @@ namespace BethanysPieShopHRM.App.Pages
             }
         }
 
-
+        private IBrowserFile selectedFile;
+        private void OnInputFileChange(InputFileChangeEventArgs e)
+        {
+            selectedFile = e.File;
+            StateHasChanged();
+        }
         public async Task HandleInvalidSubmit()
         {
             StatusClass = "alert-danger";
