@@ -49,8 +49,18 @@ namespace BethanysPieShopHRM.App.Pages
         public async Task HandleValidSubmit()
         {
             Saved = false;
-            if (Employee.EmployeeId == 0) 
+            if (Employee.EmployeeId == 0)
             {
+                if (selectedFile != null)
+                {
+                    var file = selectedFile;
+                    Stream stream = file.OpenReadStream();
+                    MemoryStream ms = new MemoryStream();
+                    await stream.CopyToAsync(ms);
+                    stream.Close();
+                    Employee.ImageName = file.Name;
+                    Employee.ImageContent = ms.ToArray();
+                }
                 var addedEmployee = await employeeDataService.AddEmployee(Employee);
                 if (addedEmployee != null)
                 {
