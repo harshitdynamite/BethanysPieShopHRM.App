@@ -18,4 +18,9 @@ builder.Services.AddHttpClient<IJobCategoryDataService, JobCategoryDataService>(
 //You could have added it as SingleTon but it would have the same effect
 builder.Services.AddScoped<ApplicationState>();
 builder.Services.AddBlazoredLocalStorage();
+
+builder.Services.AddOidcAuthentication(options => {
+    builder.Configuration.Bind("Auth0", options.ProviderOptions);
+    options.ProviderOptions.ResponseType = "code";
+});
 await builder.Build().RunAsync();
