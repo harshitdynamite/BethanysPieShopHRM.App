@@ -4,7 +4,7 @@ using Microsoft.JSInterop;
 
 namespace BethanysPieShopHRM.App.Components
 {
-    public partial class Map
+    public partial class Map: ComponentBase
     {
         string elementId = $"map-{Guid.NewGuid():D}";
 
@@ -16,5 +16,20 @@ namespace BethanysPieShopHRM.App.Components
 
         [Parameter]
         public List<Marker> Markers { get;set; }
+
+
+        /// <summary>
+        /// Javascript interops should alaways be done after the component has renderd.
+        /// </summary>
+        /// <param name="firstRender"></param>
+        /// <returns></returns>
+        protected async override Task OnAfterRenderAsync(bool firstRender)
+        {
+            await JSRuntime.InvokeVoidAsync(
+                "deliveryMap.showOrUpdate",  //function in the deliveryMap.js 
+                elementId,
+                Markers
+                );
+        }
     }
 }
