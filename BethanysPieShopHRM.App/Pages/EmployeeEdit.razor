@@ -8,6 +8,8 @@
         <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
         @* this @Employee here refers to the instance and not the class *@
         <EditForm Model="@Employee" OnValidSubmit="HandleValidSubmit" OnInvalidSubmit="HandleInvalidSubmit">
+            <DataAnnotationsValidator/>
+            <ValidationSummary />
 
             @if (Employee.EmployeeId == 0)
             { 
