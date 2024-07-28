@@ -1,11 +1,15 @@
 ﻿using BethanysPieShopHRM.Shared.Model;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace BethanysPieShopHRM.App.Components
 {
     public partial class Map
     {
         string elementId = $"map-{Guid.NewGuid():D}";
+
+        [Inject]
+        public IJSRuntime JSRuntime { get; set; }
 
         [Parameter]
         public double Zoom { get; set; }
