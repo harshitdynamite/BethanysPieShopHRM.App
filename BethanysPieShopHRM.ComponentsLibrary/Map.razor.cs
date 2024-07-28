@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace BethanysPieShopHRM.App.Components
+namespace BethanysPieShopHRM.ComponentsLibrary
 {
-    public partial class Map: ComponentBase
+    public partial class Map : ComponentBase
     {
         string elementId = $"map-{Guid.NewGuid():D}";
 
@@ -15,7 +15,7 @@ namespace BethanysPieShopHRM.App.Components
         public double Zoom { get; set; }
 
         [Parameter]
-        public List<Marker> Markers { get;set; }
+        public List<Marker> Markers { get; set; }
 
 
         /// <summary>
